@@ -1,4 +1,4 @@
-# 02.first
+# my-project
 
 ## Project setup
 ```
@@ -19,3 +19,4 @@ npm run build
 ```
 npm run lint
 ```
+
