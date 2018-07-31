@@ -13,8 +13,9 @@
                 <div class="wrap-box">
                     <div class="left-925">
                         <div class="goods-box clearfix">
-                            <div v-if="this.imglist.length!=0" class="pic-box">
+                            <div  class="pic-box">
                                 <ProductZoomer
+                                    v-if="this.imglist.length!=0"
                                     :baseImages="images"
                                     :base-zoomer-options="zoomerOptions"
                                 ></ProductZoomer>

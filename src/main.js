@@ -74,8 +74,8 @@ const store = new Vuex.Store({
     buylist
 
   },
-  mutations:{
-    increment(state){
+  getters:{
+    totalCount(state){
       let num = 0;
       for(const key in state.buylist){
        num += parseInt(state.buylist[key]);

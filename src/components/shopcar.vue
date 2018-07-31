@@ -70,7 +70,7 @@
                                 </tr>
                                 <tr v-for="(item, index) in message" :key="item.id">
                                     <td width="48" align="center">
-                                        <el-switch  active-color="#409eff" inactive-color="#555555">
+                                        <el-switch v-model="item.isSelected"  active-color="#409eff" inactive-color="#555555">
                                         </el-switch>
                                     </td>
                                     <td align="left" colspan="2">
@@ -82,7 +82,7 @@
                                     <td width="104" align="center">
                                         <el-input-number v-model="item.buycount" size="mini" :min="1" :max="10" label="描述文字"></el-input-number>
                                     </td>
-                                    <td width="104" align="left"></td>
+                                    <td width="104" align="left">{{item.sell_price*item.buycount}}</td>
                                     <td width="54" align="center">
                                         <a href="javascript:void(0)">删除</a>
                                     </td>
@@ -133,16 +133,25 @@ export default {
 
         this.axios.get(`site/comment/getshopcargoods/${ids}`)
         .then(response=>{
-            this.message=response.data.message;
             this.message.forEach((v,i)=>{
                 v.buycount=buylist[v.id];
+                v.isSelected=true;
             })
+            this.message=response.data.message;
         })
         .catch(err=>{
             console.log(err);
         })
     },
-  
+    computed:{
+       selectCount(){
+           let totalCount=0;
+           this.message.forEach(v=>{
+               if(v.isSelected)  totalCount+=v.buycount;
+               
+           })
+       }
+    } 
 }
 </script>
 
